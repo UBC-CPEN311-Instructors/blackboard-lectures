@@ -1,0 +1,11 @@
+// use WaveDrom to render this
+
+{signal: [
+  {name: 'clk', wave: 'p....|.......'},
+  {name: 'rst_n', wave: '01...|.......'},
+  {name: 'rdy', wave: 'x1.0.|..1..0.'},
+  {name: 'p', wave: 'x=.x.|..=..x.', data: ["?", "125"]},
+  {name: 'start', wave: 'x010.|....10.'},
+  {name: 'x', wave: 'x.=x.|....=x.', data: [5, 8]},
+  {name: 'a', wave: 'x.=x.|....=x.', data: [3, 2]},
+]}
