@@ -21,16 +21,18 @@ In any serious hardware development effort — e.g., if you ever do hardware des
     - clear-box tests (i.e., implementation-dependent)
 6. RTL implementation
     - each module needs to have a unit testbench that tests only that module
-7. Simulation (Modelsim)
-    - fix bugs until all tests pass
-    - add a test for each bug that is not caught by testsuite
-8. Synthesis (Quartus)
+7. Verify (simulate with Modelsim)
+    - fix bugs until all modules pass unit tests
+    - fix bugs until full design passes all testsuites
+    - add a test for each bug that is not caught by unit tests or testsuites
+8. Synthesize and Validate (Quartus and ModelSim)
     - if constraints (timing, area) violated, go back to step 4 and rethink implementation
+    - check on FPGA board, simulate post-synthesis netlist
 9. $$$$$$$$$
 
-Typically, verification (testing) requires several times more time and effort than doing the actual design. One reason for this is that having a comprehensive test suite makes the design _much easier_: you have (hopefully) already thought through all possible behaviours in steps 2 and 3, so designing the circuit in step 4 will be easier, and step 6 is just translating your circuit diagram to Verilog. Another reason is that getting things wrong can be very expensive: fabricating a few tens of samples for a large ASIC chip can cost upwards of $1mln, and if a “small bug” in a single module means that the chip does not do its job, you need to make another one.
+Typically, verification (testing) requires several times more time and effort than doing the actual design. One reason for this is that having a comprehensive test suite makes the design _much easier_: you have (hopefully) already thought through all possible behaviours in steps 2 and 3, so designing the circuit in step 4 will be easier, and step 6 is just translating your circuit diagram to Verilog. Another reason is that getting things wrong can be very expensive: fabricating a few tens of samples for a large ASIC chip can cost upwards of a million dollars, so if a “small bug” in a single module means that the chip does not do its job, you need to make another one.
 
-Why write the tests first? This is actually faster because it forces you to think about all the possible behaviours and _really_ understand the problem, which makes designing the circuit much easier. And if you don't, the assumptions you made in your implementation are likely to leak into your testsuite, and as a result your testsuite probably might not cover all possible cases, which can make for a debugging nightmare.
+Why write the tests first? **This is actually faster because it forces you to think about all the possible behaviours and _really_ understand the problem, which makes designing the circuit much easier.** If you don't, the assumptions you made in your implementation are likely to leak into your testsuite, and as a result your testsuite probably might not cover all possible cases, which can make for a debugging nightmare.
 
 
 ## Example: POW!
